@@ -1,0 +1,12 @@
+groups:
+- name: SiteDownName
+  rules:
+  - alert: SiteDown
+    expr: probe_success < 1
+    for: 60s
+    labels:
+      severity: page
+      type: http
+    annotations:
+      identifier: '{{ $labels.job }}'
+      description: '{{ $labels.instance }}(http) is down for 60s'
